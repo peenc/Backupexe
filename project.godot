@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-UpgradeDb="*res://upgrade_db.gd"
-IluminacaoGlobal="*res://scriptluzdinamica.gd"
+UpgradeDb="*res://Scripts/upgrade_db.gd"
+IluminacaoGlobal="*res://Scripts/scriptluzdinamica.gd"
 
 [input]
 

@@ -1,10 +1,10 @@
 [gd_scene load_steps=64 format=3 uid="uid://d107484en0grk"]
 
-[ext_resource type="Script" uid="uid://16fhhat1s3xr" path="res://boss.gd" id="1_0bnu1"]
+[ext_resource type="Script" uid="uid://16fhhat1s3xr" path="res://Scripts/boss.gd" id="1_0bnu1"]
 [ext_resource type="Texture2D" uid="uid://03dupr472bsu" path="res://Textures/Enemy/boss/NightBorne.png" id="2_6xxrv"]
-[ext_resource type="Script" uid="uid://jar6a1hlo3lj" path="res://hitboxboss.gd" id="3_skx2t"]
-[ext_resource type="Script" uid="uid://dx1r65gdqqygi" path="res://hurtboxboss.gd" id="4_lnbgr"]
-[ext_resource type="PackedScene" uid="uid://ckdykmn7vclig" path="res://particulaseliminacao.tscn" id="5_o1i15"]
+[ext_resource type="Script" uid="uid://jar6a1hlo3lj" path="res://Scripts/hitboxboss.gd" id="3_skx2t"]
+[ext_resource type="Script" uid="uid://dx1r65gdqqygi" path="res://Scripts/hurtboxboss.gd" id="4_lnbgr"]
+[ext_resource type="PackedScene" uid="uid://ckdykmn7vclig" path="res://Scripts/particulaseliminacao.tscn" id="5_o1i15"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_skx2t"]
 

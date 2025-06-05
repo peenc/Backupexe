@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://b30hlqhe3qwd1" path="res://Textures/SciFi_DungeonTileset16x16_0x72Like.png" id="4_crccb"]
 [ext_resource type="Texture2D" uid="uid://da2smcrjsecom" path="res://Textures/spot.png" id="5_bw0dn"]
 [ext_resource type="Texture2D" uid="uid://dsvc2nolm0y4w" path="res://Textures/All1.png" id="5_iwgxe"]
-[ext_resource type="Script" uid="uid://gdqcvax5wxw1" path="res://LightController.gd" id="7_bw0dn"]
-[ext_resource type="Script" uid="uid://cgiie36v0xxjd" path="res://scriptluzdinamica.gd" id="7_x2nbc"]
+[ext_resource type="Script" uid="uid://gdqcvax5wxw1" path="res://Scripts/LightController.gd" id="7_bw0dn"]
+[ext_resource type="Script" uid="uid://cgiie36v0xxjd" path="res://Scripts/scriptluzdinamica.gd" id="7_x2nbc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8it51"]
 texture = ExtResource("1_sola0")

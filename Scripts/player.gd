@@ -54,7 +54,7 @@ var tem_pendrive_orbital := false
 @onready var levelPanel = get_node("%LevelUp")
 @onready var upgradeOptions = get_node("%UpgradeOptions")
 @onready var sndLevelUp = get_node("%sound_levelUp")
-@onready var itemOptions = preload("res://item_option.tscn")
+@onready var itemOptions = preload("res://Scripts/item_option.tscn")
 
 func _ready():
 	add_to_group("player")
@@ -111,7 +111,7 @@ func get_alvo_proximo() -> Vector2:
 	
 var pode_usar_qf := true 
 @export var cooldown_qf := 5.0
-var quarantine_field = preload("res://quarantine_field.tscn")
+var quarantine_field = preload("res://Scripts/quarantine_field.tscn")
 
 func _input(event):
 	if event.is_action_pressed("tecla1") and pode_usar_qf and tem_quarantine_field:
@@ -217,7 +217,7 @@ func take_damage(dano: int) -> void:
 
 func die() -> void:
 	#print("Player morreu!")
-	get_tree().change_scene_to_file("res://game_over.tscn")
+	get_tree().change_scene_to_file("res://Scripts/game_over.tscn")
 	
 
 func start_dash():

@@ -16,16 +16,16 @@ enum Clima { CÉU_LIMPO, VENTO, NEBLINA }
 
 
 # Parâmetros base
-@export var intensidade_vento_base := 50.0
+@export var intensidade_vento_base := 300.0
 @export var gravidade_vento := 10.0
-@export var densidade_vento_base := 60
+@export var densidade_vento_base := 500
 @export var tempo_vida_vento := 3.0
 @export var duracao_vento := 20.0
 
-@export var densidade_neblina_base := 500
+@export var densidade_neblina_base := 500.0
 @export var tempo_vida_neblina := 10.0
 @export var velocidade_neblina_base := 20.0
-@export var tamanho_textura_neblina := 256  # ✅ Agora ajustável
+@export var tamanho_textura_neblina := 256  #ajustável
 
 # Estado 
 var clima_atual := Clima.CÉU_LIMPO

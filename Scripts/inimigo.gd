@@ -44,7 +44,7 @@ func piscar_dano():
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color(1, 1, 1)
 
-var particulasmorte = preload("res://particulaseliminacao.tscn")
+var particulasmorte = preload("res://Scripts/particulaseliminacao.tscn")
 
 func die():	
 	

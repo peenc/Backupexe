@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dc7cw6wsbc4e7"]
 
-[ext_resource type="Script" uid="uid://2ct8xto0qc60" path="res://packet_blaster.gd" id="1_31qy1"]
+[ext_resource type="Script" uid="uid://2ct8xto0qc60" path="res://Scripts/packet_blaster.gd" id="1_31qy1"]
 [ext_resource type="Texture2D" uid="uid://to248kmimgk0" path="res://Textures/Items/Weapons/boladeenergia.png" id="2_wlrb2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_knwky"]

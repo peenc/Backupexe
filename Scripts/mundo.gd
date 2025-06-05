@@ -2,7 +2,7 @@ extends Node2D
 
 @export var tamanho_bloco: Vector2 = Vector2(1136, 656) # tamanho de cada bloco (em pixels)
 @export var alcance_blocos: int = 2 # quantos blocos para cada lado do player
-@export var cena_tilemap: PackedScene = preload("res://cenario_1.tscn")
+@export var cena_tilemap: PackedScene = preload("res://Scripts/cenario_1.tscn")
 
 @export var inimigo_scene: PackedScene
 @export var player_path: NodePath

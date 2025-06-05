@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bqaw5or1uu4s"]
 
-[ext_resource type="Script" uid="uid://0rdwdxgkj70x" path="res://orbital.gd" id="1_eg5np"]
+[ext_resource type="Script" uid="uid://0rdwdxgkj70x" path="res://Scripts/orbital.gd" id="1_eg5np"]
 [ext_resource type="Texture2D" uid="uid://0p4u03heg31s" path="res://Textures/Items/Weapons/pendrivefaca.png" id="2_22i72"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_a6xg3"]

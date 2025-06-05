@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cpujmthridpi3"]
 
-[ext_resource type="Script" uid="uid://bug2efsdhxfap" path="res://particulas.gd" id="1_dwjnv"]
+[ext_resource type="Script" uid="uid://bug2efsdhxfap" path="res://Scripts/particulas.gd" id="1_dwjnv"]
 
 [node name="Particulas" type="Node2D"]
 script = ExtResource("1_dwjnv")

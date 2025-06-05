@@ -37,7 +37,7 @@ var alvo_no_alcance = false
 @onready var hurtbox = $Hurtbox
 
 var exp_gem = preload("res://Objects/xpcomum.tscn")
-var particulasmorte = preload("res://particulaseliminacao.tscn")
+var particulasmorte = preload("res://Scripts/particulaseliminacao.tscn")
 
 func _ready() -> void:
 	if player_path:

@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://b000ge1we7ntf"]
 
-[ext_resource type="Script" uid="uid://gvkjdp1e5kb0" path="res://inimigo.gd" id="1_0b8xr"]
+[ext_resource type="Script" uid="uid://gvkjdp1e5kb0" path="res://Scripts/inimigo.gd" id="1_0b8xr"]
 [ext_resource type="Texture2D" uid="uid://bagvqlcr0s6dj" path="res://Textures/Enemy/giant_amoeba_new.png" id="2_g45jm"]
 [ext_resource type="PackedScene" uid="uid://bixsyhfyq5pah" path="res://Utility/hitbox.tscn" id="3_g45jm"]
 [ext_resource type="PackedScene" uid="uid://blv73meyykcir" path="res://Utility/hurtboxinimigo.tscn" id="4_enrbn"]
-[ext_resource type="PackedScene" uid="uid://ckdykmn7vclig" path="res://particulaseliminacao.tscn" id="5_l0fh3"]
+[ext_resource type="PackedScene" uid="uid://ckdykmn7vclig" path="res://Scripts/particulaseliminacao.tscn" id="5_l0fh3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0b8xr"]
 radius = 8.0
