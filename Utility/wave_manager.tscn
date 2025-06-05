@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhoc6je81h2fb"]
+
+[ext_resource type="Script" uid="uid://bqgkl8nrvk0vj" path="res://Utility/wave_manager.gd" id="1_ofe8w"]
+[ext_resource type="PackedScene" uid="uid://b000ge1we7ntf" path="res://inimigo.tscn" id="2_fde4t"]
+
+[node name="WaveManager" type="Node2D"]
+script = ExtResource("1_ofe8w")
+inimigo_cena = ExtResource("2_fde4t")
+
+[node name="Timer" type="Timer" parent="."]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdy11kgg5key8"]
+
+[ext_resource type="Script" uid="uid://ca203c8bbcbpo" path="res://Objects/xpcomum.gd" id="1_4ufnb"]
+[ext_resource type="Texture2D" uid="uid://cqko216og8rxk" path="res://Textures/Items/Gems/XP COMUM.png" id="2_baofn"]
+[ext_resource type="AudioStream" uid="uid://cwv0a56ofixlc" path="res://Audio/SoundEffect/collectgem.mp3" id="3_0a5oi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r14vi"]
+radius = 4.0
+
+[node name="xp" type="Area2D" groups=["loot"]]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_4ufnb")
+experience = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("2_baofn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_r14vi")
+
+[node name="CollectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0a5oi")
+volume_db = -35.0
+
+[connection signal="finished" from="CollectSound" to="." method="_on_collect_sound_finished"]

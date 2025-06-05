@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dc7cw6wsbc4e7"]
+
+[ext_resource type="Script" uid="uid://2ct8xto0qc60" path="res://packet_blaster.gd" id="1_31qy1"]
+[ext_resource type="Texture2D" uid="uid://to248kmimgk0" path="res://Textures/Items/Weapons/boladeenergia.png" id="2_wlrb2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_knwky"]
+radius = 5.0
+
+[node name="Packet Blaster" type="Area2D"]
+script = ExtResource("1_31qy1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("2_wlrb2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_knwky")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

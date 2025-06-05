@@ -1,0 +1,157 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckdykmn7vclig"]
+
+[sub_resource type="GDScript" id="GDScript_6mhxr"]
+script/source = "extends Node2D
+
+func _ready():
+	#criar_particulas_eliminacao()
+	criar_particulas_dados()
+	await get_tree().create_timer(1.5).timeout
+	queue_free()
+	
+func criar_particulas_eliminacao():
+	var particulas = GPUParticles2D.new()
+	particulas.amount = 120
+	particulas.lifetime = 2.2
+	particulas.one_shot = true
+	particulas.emitting = true
+	particulas.position = Vector2.ZERO
+
+	particulas.texture = criar_textura_bolinha_bordo(32)
+
+	var mat = ParticleProcessMaterial.new()
+	
+	# Agora usa Ring pra nascer em círculo e espalhar
+	mat.emission_shape = ParticleProcessMaterial.EMISSION_SHAPE_RING
+	mat.emission_ring_radius = 25.0  # Raio do anel inicial
+	mat.spread = 360.0
+
+	# Velocidade controlada pra espalhar bem
+	mat.initial_velocity_min = 20.0
+	mat.initial_velocity_max = 60.0
+
+	# Sem damping, não freia
+	mat.damping_min = 0.0
+	mat.damping_max = 0.0
+
+	# Gravidade zero
+	mat.gravity = Vector3.ZERO
+
+	# Gira um pouco enquanto voa
+	mat.angular_velocity_min = 3.0
+	mat.angular_velocity_max = 8.0
+
+	# Adiciona um leve giro em órbita (bem digital)
+	mat.orbit_velocity_min = -1.5
+	mat.orbit_velocity_max = 1.5
+
+	# Escala das partículas
+	mat.scale_min = 0.05
+	mat.scale_max = 0.10
+
+	# Anima a escala (cresce e depois some)
+	var scale_curve = Curve.new()
+	scale_curve.add_point(Vector2(0.0, 0.0))
+	scale_curve.add_point(Vector2(0.3, 0.5))
+	scale_curve.add_point(Vector2(1.0, 0.0))
+	mat.scale_curve = scale_curve
+
+
+	# Cor estilo \"dados digitais\"
+	mat.color = Color(0.2, 0.8, 1.0, 1)  # Ciano digital
+
+	# Gradiente da opacidade no tempo
+	var ramp = Gradient.new()
+	ramp.add_point(0.0, Color(0.2, 0.8, 1.0, 1))
+	ramp.add_point(0.6, Color(0.2, 0.8, 1.0, 0.4))
+	ramp.add_point(1.0, Color(0.2, 0.8, 1.0, 0))
+	
+	var color_ramp = GradientTexture1D.new()
+	color_ramp.gradient = ramp
+	mat.color_ramp = color_ramp
+
+	particulas.process_material = mat
+	add_child(particulas)
+
+
+
+func criar_textura_bolinha_bordo(tamanho: int) -> Texture2D:
+	var img = Image.create(tamanho, tamanho, false, Image.FORMAT_RGBA8)
+	
+	for x in tamanho:
+		for y in tamanho:
+			var dx = x - tamanho / 2
+			var dy = y - tamanho / 2
+			var dist = sqrt(dx * dx + dy * dy)
+			if dist <= tamanho / 2:
+				img.set_pixel(x, y, Color(0.2, 0.8, 1.0, 1))  # cor azul
+			else:
+				img.set_pixel(x, y, Color(1, 1, 1, 0))  # transparente
+	
+	img.generate_mipmaps()  # melhora o visual quando redimensionado
+	
+	var tex = ImageTexture.create_from_image(img)
+	return tex
+	
+func criar_particulas_dados():
+	var particulas = GPUParticles2D.new()
+	particulas.amount = 80
+	particulas.lifetime = 1.8
+	particulas.one_shot = true
+	particulas.emitting = true
+	particulas.position = Vector2.ZERO
+
+	particulas.texture = criar_textura_quadrado(16)  # quadrado tipo pixel
+
+	var mat = ParticleProcessMaterial.new()
+	mat.emission_shape = ParticleProcessMaterial.EMISSION_SHAPE_SPHERE
+	mat.emission_sphere_radius = 40
+	mat.spread = 360.0
+
+	mat.initial_velocity_min = 20.0
+	mat.initial_velocity_max = 50.0
+
+	mat.damping_min = 0.2
+	mat.damping_max = 0.4
+
+	mat.gravity = Vector3.ZERO
+
+	mat.angular_velocity_min = 0.0
+	mat.angular_velocity_max = 0.0  # Sem rotação, pra parecer dados fixos
+
+	mat.scale_min = 0.1
+	mat.scale_max = 0.2
+
+	# Escala animada (cresce e some)
+	var scale_curve = Curve.new()
+	scale_curve.add_point(Vector2(0.0, 0.0))
+	scale_curve.add_point(Vector2(0.2, 1.0))
+	scale_curve.add_point(Vector2(1.0, 0.0))
+	mat.scale_curve = scale_curve
+
+	# Gradiente de opacidade
+	var ramp = Gradient.new()
+	ramp.add_point(0.0, Color(0.2, 0.8, 1.0, 1))
+	ramp.add_point(0.6, Color(0.2, 0.8, 1.0, 0.5))
+	ramp.add_point(1.0, Color(0.2, 0.8, 1.0, 0))
+
+	var color_ramp = GradientTexture1D.new()
+	color_ramp.gradient = ramp
+	mat.color_ramp = color_ramp
+
+	particulas.process_material = mat
+	add_child(particulas)
+
+func criar_textura_quadrado(tamanho: int) -> Texture2D:
+	var img = Image.create(tamanho, tamanho, false, Image.FORMAT_RGBA8)
+
+	for x in tamanho:
+		for y in tamanho:
+			img.set_pixel(x, y, Color(0.2, 0.8, 1.0, 1))  # azul ciano digital
+
+	img.generate_mipmaps()
+	return ImageTexture.create_from_image(img)
+"
+
+[node name="ParticulasDeEliminacao" type="Node2D"]
+script = SubResource("GDScript_6mhxr")
