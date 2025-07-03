@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var SPEED := 50
 @export var player_path : NodePath  
-@export var hp = 10
+@export var hp = 2
 @export var player : Node2D
 @export var experience = 1
 var sprite: Sprite2D
@@ -46,13 +46,18 @@ func piscar_dano():
 
 var particulasmorte = preload("res://Scripts/particulaseliminacao.tscn")
 
+signal inimigo_morreu
+
+
 func die():	
-	
+	Pontuacao.inimigos_derrotados += 1
+	Pontuacao.pontos += 100
+
 	var new_gem = exp_gem.instantiate()
 	new_gem.global_position = global_position
 	new_gem.experience = experience
 	loot_base.call_deferred("add_child", new_gem)
-	
+	emit_signal("inimigo_morreu", self)
 	desaparecer_e_morrer()
 
 func desaparecer_e_morrer():

@@ -2,6 +2,8 @@ extends Node2D
 
 enum Clima { CÉU_LIMPO, VENTO, NEBLINA }
 
+var player = null
+
 # Area do clima
 @export var area_clima: Rect2 = Rect2(Vector2(-2000, -1000), Vector2(4000, 2000))
 
@@ -16,9 +18,9 @@ enum Clima { CÉU_LIMPO, VENTO, NEBLINA }
 
 
 # Parâmetros base
-@export var intensidade_vento_base := 300.0
+@export var intensidade_vento_base := 505.0
 @export var gravidade_vento := 10.0
-@export var densidade_vento_base := 500
+@export var densidade_vento_base := 500.0
 @export var tempo_vida_vento := 3.0
 @export var duracao_vento := 20.0
 
@@ -46,8 +48,22 @@ var densidade_vento := 0
 var densidade_neblina := 0
 var velocidade_neblina := 0.0
 
+var velocidade_original := 100
+
+func aplicar_lentidao(player):
+	if player != null and velocidade_original == null:
+		velocidade_original = player.SPEED
+		player.SPEED *= 0.6
+
+func remover_lentidao(player):
+	if player != null and velocidade_original != null:
+		player.SPEED = velocidade_original
+		velocidade_original = 0
+
+
 # Inicializa as texturas e o clima inicial
 func _ready():
+	var player = get_tree().get_first_node_in_group("player")
 	textura_particula = criar_textura_bolinha_branca(4)
 	textura_neblina = criar_textura_neblina(tamanho_textura_neblina)
 	inicializar_clima_inicial()
@@ -99,6 +115,10 @@ func desativar_todos_os_climas():
 # ---------------------
 # Ativa o vento se baseando na densidade e intensidade
 func ativar_vento():
+	$Wind.play()
+	if player:
+		aplicar_lentidao(player)
+		print("aplicando lentidão no jogador")
 	vento_ativo = true
 	tempo_vento_ativo = 0.0
 	clima_atual = Clima.VENTO
@@ -109,6 +129,9 @@ func ativar_vento():
 		particulas_vento.append(criar_particula_vento())
 
 func desativar_vento():
+	if player:
+		remover_lentidao(player)
+		print("removendo lentidao no jogador")
 	for data in particulas_vento:
 		if is_instance_valid(data.sprite):
 			remove_child(data.sprite)
@@ -116,7 +139,7 @@ func desativar_vento():
 	particulas_vento.clear()
 	vento_ativo = false
 	print("VENTO ACABANDO")
-
+	$Wind.stop()
 # Cria particula de vento, posiciona e reutiliza as particulas ao fim
 func processar_vento(delta):
 	tempo_vento_ativo += delta

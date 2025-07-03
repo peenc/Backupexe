@@ -1,8 +1,9 @@
-[gd_scene load_steps=26 format=3 uid="uid://md3ycwy8mcy3"]
+[gd_scene load_steps=27 format=3 uid="uid://md3ycwy8mcy3"]
 
 [ext_resource type="Script" uid="uid://cp50udrt3squu" path="res://Scripts/quarantine_field.gd" id="1_3ldqs"]
 [ext_resource type="Texture2D" uid="uid://b5p4jmwlyb7pc" path="res://Textures/Gravity-Sheet.png" id="2_cc2y4"]
 [ext_resource type="PackedScene" uid="uid://cpujmthridpi3" path="res://Scripts/particulas.tscn" id="3_5mudn"]
+[ext_resource type="AudioStream" uid="uid://7mvd0gxhcpr8" path="res://Audio/Player/329028__humanoide9000__air-portal.wav" id="4_5sp24"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5mudn"]
 atlas = ExtResource("2_cc2y4")
@@ -172,3 +173,7 @@ scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_h155q")
 
 [node name="Particulas" parent="." instance=ExtResource("3_5mudn")]
+
+[node name="VortexSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_5sp24")
+volume_db = -26.381

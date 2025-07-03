@@ -1,0 +1,83 @@
+[gd_scene load_steps=13 format=3 uid="uid://cq83y5u3uru3d"]
+
+[ext_resource type="Script" uid="uid://ce8wajxn6lfu1" path="res://Scripts/firewall_boost.gd" id="1_j678a"]
+[ext_resource type="Texture2D" uid="uid://786b3v6whpw" path="res://Textures/Bullet 24x24 Free Part 4B.png" id="2_as0cd"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j678a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gerjo"]
+atlas = ExtResource("2_as0cd")
+region = Rect2(384, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltmja"]
+atlas = ExtResource("2_as0cd")
+region = Rect2(408, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mks8"]
+atlas = ExtResource("2_as0cd")
+region = Rect2(432, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnnra"]
+atlas = ExtResource("2_as0cd")
+region = Rect2(456, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6wg3"]
+atlas = ExtResource("2_as0cd")
+region = Rect2(480, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_407vl"]
+atlas = ExtResource("2_as0cd")
+region = Rect2(504, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5ch1"]
+atlas = ExtResource("2_as0cd")
+region = Rect2(528, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7o8t"]
+atlas = ExtResource("2_as0cd")
+region = Rect2(552, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ltmja"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gerjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltmja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mks8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnnra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6wg3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_407vl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5ch1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7o8t")
+}],
+"loop": true,
+"name": &"escudo",
+"speed": 5.0
+}]
+
+[node name="Firewall Boost" type="Area2D"]
+script = ExtResource("1_j678a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_j678a")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -1)
+scale = Vector2(2, 1.978)
+sprite_frames = SubResource("SpriteFrames_ltmja")
+animation = &"escudo"
+frame_progress = 0.890641

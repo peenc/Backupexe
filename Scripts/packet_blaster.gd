@@ -14,7 +14,7 @@ var direcao = Vector2.ZERO
 var target = Vector2.ZERO
 
 func _ready():
-
+	$Shoot.play()
 	connect("area_entered", Callable(self, "_on_area_entered"))
 	add_to_group("hitbox")
 	scale = Vector2.ONE * tamanho_ataque
@@ -55,14 +55,21 @@ func _on_area_entered(area: Area2D):
 	if area.is_in_group("hurtbox"):
 		hit_inimigo()
 
-func aplicar_upgrade(nivel):
+func aplicar_upgrade(nivel, dano_base):
+	var dano_base_skill := 0.0
+	var multiplicador := 1.0
 	match nivel:
 		1:
-			dano = 5
+			dano_base_skill = 5
 			velocidade = 110.0		
+			multiplicador = 1.0
 		2:
-			dano = 7
+			dano_base_skill = 10
 			velocidade = 250.0
+			multiplicador = 1.3
 		3:
-			dano = 12
+			dano_base_skill = 15
 			velocidade = 500.0
+			multiplicador = 1.7
+			
+	dano = (dano_base + dano_base_skill) * multiplicador

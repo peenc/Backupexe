@@ -7,19 +7,32 @@ extends Node2D
 @export var inimigo_scene: PackedScene
 @export var player_path: NodePath
 var player: Node2D
+var mapa_escolhido := ""
+
 
 var blocos_gerados := {} # dicionário para guardar blocos instanciados
 
 var blocos_node: Node2D
 
 func _ready():
+	randomize()
+
+	var opcoes_mapa = ["mapacomburaco", "Nucleo congelado"]
+	mapa_escolhido = opcoes_mapa[randi() % opcoes_mapa.size()]
+	print("🌍 Mapa escolhido: ", mapa_escolhido)
+
 	player = get_node(player_path)
+	
+	if mapa_escolhido == "Nucleo congelado":
+		player.SPEED *= 0.8
+		print("❄️ Mapa frio detectado! Velocidade reduzida para:", player.SPEED)
+	else:
+		print("🔥 Mapa normal. Velocidade padrão do jogador:", player.SPEED)
+
 	blocos_node = $World/Blocos
+	$World/MusicaAmbiente.play()
+	$World/WaveManager.iniciar_ondas()
 
-	var wave_manager = $World/WaveManager
-	wave_manager.iniciar_ondas(player)
-
-	atualizar_blocos_proximos()
 
 
 func _process(delta):
@@ -32,6 +45,10 @@ func _process(delta):
 		position.y += 300 * delta
 	if Input.is_action_pressed("ui_up"):
 		position.y -= 300 * delta
+	
+	Pontuacao.tempo_sobrevivido += delta
+	if int(Pontuacao.tempo_sobrevivido) % 10 == 0:
+		Pontuacao.pontos += 10  
 
 	atualizar_blocos_proximos()
 
@@ -55,8 +72,16 @@ func atualizar_blocos_proximos():
 			if not blocos_gerados.has(chave):
 				if blocos_gerados_nesse_frame >= blocos_por_frame:
 					return
+
 				var bloco = cena_tilemap.instantiate()
 				bloco.position = Vector2(x * tamanho_bloco.x, y * tamanho_bloco.y)
+
+				# 🔥 Ativa apenas o mapa escolhido (visível)
+				var todos_mapas = ["mapacomburaco", "Nucleo congelado"]
+				for nome in todos_mapas:
+					if bloco.has_node(nome):
+						bloco.get_node(nome).visible = (nome == mapa_escolhido)
+
 				blocos_node.add_child(bloco)
 				blocos_gerados[chave] = bloco
 				blocos_gerados_nesse_frame += 1

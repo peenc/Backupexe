@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://c01clguc6yy6y"]
+[gd_scene load_steps=3 format=3 uid="uid://c01clguc6yy6y"]
+
+[ext_resource type="Script" uid="uid://dfc5fgrrngnv1" path="res://Scripts/game_over.gd" id="1_aa0g4"]
+[ext_resource type="Texture2D" uid="uid://deboydkl0xbrx" path="res://gameover.png" id="2_ck3gm"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -7,25 +10,57 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -577.5
-offset_top = -323.5
-offset_right = 577.5
-offset_bottom = 323.5
+offset_left = -576.0
+offset_top = -320.0
+offset_right = 579.0
+offset_bottom = 327.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_aa0g4")
 
-[node name="Game Over" type="Label" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 575.5
-offset_top = 302.5
-offset_right = 667.5
-offset_bottom = 325.5
-text = "GAME OVER"
+offset_left = -74.0
+offset_top = -149.0
+offset_right = 1383.0
+offset_bottom = 799.0
+texture = ExtResource("2_ck3gm")
+expand_mode = 1
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 568.0
-offset_top = 327.0
-offset_right = 684.0
-offset_bottom = 360.0
-text = "Reiniciar"
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -46.5
+offset_right = 46.0
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PontuacaoFinal" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="REINICIAR" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "REINICIAR"
+
+[node name="MENU PRINCIPAL" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "MENU PRINCIPAL
+"
+
+[node name="SAIR" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "SAIR
+"
+
+[connection signal="pressed" from="VBoxContainer/REINICIAR" to="." method="_on_reiniciar_pressed"]
+[connection signal="pressed" from="VBoxContainer/MENU PRINCIPAL" to="." method="_on_menu_principal_pressed"]
+[connection signal="pressed" from="VBoxContainer/SAIR" to="." method="_on_sair_pressed"]

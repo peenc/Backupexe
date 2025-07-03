@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://ndejncj2wj24"]
+
+[ext_resource type="Script" uid="uid://j1xe2w8dh3p0" path="res://Scripts/explosao_particulas.gd" id="1_7ma68"]
+[ext_resource type="Shader" uid="uid://8rc0ursha0g4" path="res://Scripts/explosao_particulas.gdshader" id="2_l8me2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_voxqt"]
+shader = ExtResource("2_l8me2")
+
+[node name="ExplosaoParticulas" type="Node2D"]
+script = ExtResource("1_7ma68")
+
+[node name="Particulas" type="GPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_voxqt")

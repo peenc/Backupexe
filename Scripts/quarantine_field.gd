@@ -22,12 +22,12 @@ var comecar_desvanecer := false
 var inimigos_na_area := {}
 
 func _ready():
-	
+	$VortexSound.play()
 	connect("area_entered", Callable(self, "_on_area_entered"))
 	add_to_group("hitbox")
 	$AnimatedSprite2D.play("Explosion")
+	
 	rotation = 0
-	dano = 15
 	scale = Vector2.ONE * tamanho_ataque
 	
 	# Timer de dano periódico
@@ -91,29 +91,39 @@ func _aplicar_dano_periodico():
 			inimigo.receber_dano(dano)
 
 func _on_destruir():
+	$VortexSound.stop()
 	queue_free()
 	
 	
-func aplicar_upgrade(nivel):
-	var tamanho = 1.0
+func aplicar_upgrade(nivel: int, dano_jogador: float):
+	var multiplicador := 1.0
+	var tamanho := 1.0
+	var dano_base_skill := 0.0
+
 	match nivel:
 		1:
-			dano = 15
+			dano_base_skill = 5
+			multiplicador = 1.0
 			slow_percent = 0.2
 			tamanho = 1.0
 			cooldown = 4.0
 		2:
-			dano = 25
+			dano_base_skill = 10
+			multiplicador = 1.3
 			slow_percent = 0.4
 			tamanho = 1.3
 			cooldown = 3.5
 		3:
-			dano = 40
+			dano_base_skill = 15
+			multiplicador = 1.7
 			slow_percent = 0.6
 			tamanho = 1.6
 			cooldown = 2.8
 
-	# Aplica no visual
+	# Fórmula combinada:
+	dano = (dano_jogador + dano_base_skill) * multiplicador
+
+	# Ajustes visuais
 	scale = Vector2.ONE * tamanho
 	$AnimatedSprite2D.scale = Vector2.ONE * tamanho
 

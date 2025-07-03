@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var quantidade_luzes := 3
+@export var quantidade_luzes := 2
 @export var area_min := Vector2(-3000, -2000)
 @export var area_max := Vector2(3000, 2000)
 @export var distancia_remocao := 3100.0

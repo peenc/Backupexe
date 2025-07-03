@@ -1,12 +1,15 @@
-[gd_scene load_steps=43 format=3 uid="uid://cqn7tyat66voe"]
+[gd_scene load_steps=49 format=3 uid="uid://cqn7tyat66voe"]
 
 [ext_resource type="Script" uid="uid://cdhw8nielm3yf" path="res://Scripts/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bcp2jqvu2ke36" path="res://Textures/Player/Prototype_Character amarelo.png" id="3_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://c2ctr58tlpd7" path="res://Textures/Player/Prototype_Character left amarelo.png" id="4_b26j0"]
 [ext_resource type="PackedScene" uid="uid://bkypjuefftwqu" path="res://Utility/hurtbox.tscn" id="4_hqtel"]
 [ext_resource type="PackedScene" uid="uid://crwma8aksl28w" path="res://Utility/hitboxplayer.tscn" id="5_sweqy"]
+[ext_resource type="PackedScene" uid="uid://cq83y5u3uru3d" path="res://Scripts/firewall_boost.tscn" id="5_ttee0"]
 [ext_resource type="Script" uid="uid://boehyq40txwc0" path="res://Utility/hitbox.gd" id="6_2hs0m"]
+[ext_resource type="PackedScene" uid="uid://ctsiorq1vgpsm" path="res://Scripts/Cleansweep.tscn" id="6_f4aal"]
 [ext_resource type="PackedScene" uid="uid://dc7cw6wsbc4e7" path="res://Scripts/packet_blaster.tscn" id="7_1jxqw"]
+[ext_resource type="PackedScene" uid="uid://bh32vyqydxo1u" path="res://Scripts/data_beam.tscn" id="7_jbday"]
 [ext_resource type="PackedScene" uid="uid://bqaw5or1uu4s" path="res://Scripts/pen_drive_orbital.tscn" id="9_b26j0"]
 [ext_resource type="PackedScene" uid="uid://md3ycwy8mcy3" path="res://Scripts/quarantine_field.tscn" id="10_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://cs71kcvnlnwj8" path="res://Textures/GUI/Healthbars/Frames/Frame 10001.png" id="11_ivps1"]
@@ -15,9 +18,13 @@
 [ext_resource type="Texture2D" uid="uid://o7vkb12v58oo" path="res://Textures/GUI/Healthbars/Bars/Bar 1 Orange Darker0001.png" id="13_606se"]
 [ext_resource type="AudioStream" uid="uid://c2ode0mlt7hp7" path="res://Audio/SoundEffect/levelup.ogg" id="13_urp6f"]
 [ext_resource type="PackedScene" uid="uid://dmriq1o2kkgtg" path="res://Scripts/item_option.tscn" id="14_bwjto"]
+[ext_resource type="AudioStream" uid="uid://bo770ihbfgkxh" path="res://Audio/Player/dashsound.mp3" id="19_rh56n"]
+[ext_resource type="AudioStream" uid="uid://byi106mh7uf0n" path="res://Audio/Player/error damage.wav" id="20_0n4qx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4flbx"]
 size = Vector2(10.5, 20.25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ttee0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jm5j8"]
 atlas = ExtResource("3_n7ghd")
@@ -236,10 +243,16 @@ script = ExtResource("1_onrkg")
 packet_blaster = ExtResource("7_1jxqw")
 pendrive_scene = ExtResource("9_b26j0")
 quarantine_field_scene = ExtResource("10_n7ghd")
+firewall_scene = ExtResource("5_ttee0")
+clean_sweep = ExtResource("6_f4aal")
+data_beam_scene = ExtResource("7_jbday")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -2)
 shape = SubResource("RectangleShape2D_4flbx")
+
+[node name="OverclockEffect" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ttee0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-3, -4)
@@ -396,6 +409,23 @@ offset_left = 2243.0
 offset_top = 137.0
 offset_right = 2707.0
 offset_bottom = 302.0
+
+[node name="Pontuacao" type="Label" parent="GUILayer/GUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 236.0
+offset_top = 6.0
+offset_right = 430.0
+offset_bottom = 29.0
+text = "Pontuação:"
+
+[node name="DashSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_rh56n")
+volume_db = -20.8
+
+[node name="DamageSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_0n4qx")
+volume_db = -31.747
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

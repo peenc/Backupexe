@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://byi106mh7uf0n"
+path="res://.godot/imported/error damage.wav-7b398ca846f12b30cd2a5c91edec0d1d.sample"
+
+[deps]
+
+source_file="res://Audio/Player/error damage.wav"
+dest_files=["res://.godot/imported/error damage.wav-7b398ca846f12b30cd2a5c91edec0d1d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

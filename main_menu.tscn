@@ -1,0 +1,132 @@
+[gd_scene load_steps=3 format=3 uid="uid://dei8vt2xy4hxu"]
+
+[ext_resource type="Script" uid="uid://es3no2h2ve5y" path="res://Scripts/main_menu.gd" id="1_06t4h"]
+[ext_resource type="Texture2D" uid="uid://b4c45351a8nw1" path="res://menu.png" id="2_7vrkn"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_06t4h")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -2.0
+offset_right = 1151.0
+offset_bottom = 646.0
+texture = ExtResource("2_7vrkn")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.5
+offset_top = -40.0
+offset_right = -8.5
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "JOGAR"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "RANKING"
+
+[node name="Button4" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "TUTORIAL"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "SAIR"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="VBoxContainer"]
+position = Vector2(-533.5, -276.5)
+
+[node name="Ranking Menu" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 411.0
+offset_top = 216.0
+offset_right = 700.0
+offset_bottom = 467.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ranking Menu"]
+layout_mode = 0
+offset_right = 293.0
+offset_bottom = 244.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Ranking Menu/VBoxContainer"]
+layout_mode = 2
+
+[node name="fecharRanking" type="Button" parent="Ranking Menu"]
+layout_mode = 0
+offset_left = 262.0
+offset_top = 3.0
+offset_right = 285.0
+offset_bottom = 28.0
+text = "X"
+
+[node name="Tutorial" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 177.0
+offset_top = 119.0
+offset_right = 944.0
+offset_bottom = 531.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 9.0
+offset_right = 765.0
+offset_bottom = 396.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Tutorial/VBoxContainer"]
+layout_mode = 2
+text = "Controles
+
+W A S D → Movimentação
+
+Espaço → Dash
+
+R → Modo Overclock (Diponível ao alcançar o nível 10)
+
+
+1 2 3 4 → Habilidades
+
+Mouse → Direcionar habilidades
+
+Dica: Combine o modo Overclock com suas habilidades para causar máximo impacto!"
+horizontal_alignment = 1
+
+[node name="fecharTutorial" type="Button" parent="Tutorial"]
+layout_mode = 2
+offset_left = 709.0
+offset_top = 9.0
+offset_right = 761.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 25
+text = "X"
+flat = true
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Ranking Menu/fecharRanking" to="." method="_on_fechar_ranking_pressed"]
+[connection signal="pressed" from="Tutorial/fecharTutorial" to="." method="_on_fechar_tutorial_pressed"]

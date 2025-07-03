@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var hp = 100
 @export var player : Node2D
 @export var experience = 30
-@export var hp_por_fase = 50
+@export var hp_por_fase = 100
 @export var tempo_invulneravel = 5.0
 @export var dano_do_ataque = 10
 # === DASH CONFIG ===
@@ -142,15 +142,17 @@ func piscar_dano():
 	await get_tree().create_timer(0.1).timeout
 	modulate = Color(1, 1, 1)
 
-
+signal inimigo_morreu
 # === MORTE ===
 func die():
 	if morto:
 		return
 	morto = true
-
+	emit_signal("inimigo_morreu", self)
 	velocity = Vector2.ZERO
 	desativar_inimigo()
+	Pontuacao.bosses_derrotados += 1
+	Pontuacao.pontos += 500 
 
 	sprite.play("Morte")
 	var particula = particulasmorte.instantiate()

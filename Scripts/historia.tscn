@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://f5uwuruxfmje"]
+
+[ext_resource type="Script" uid="uid://dur0s8n6jsnml" path="res://Scripts/historia.gd" id="1_dsqof"]
+[ext_resource type="Texture2D" uid="uid://bm3rbpl5mgbgv" path="res://ERROR.png" id="2_h53e0"]
+[ext_resource type="AudioStream" uid="uid://b1kfjf13lqx8a" path="res://Audio/Music/static-drone-ambient-258064.ogg" id="2_o0lxc"]
+
+[node name="Historia" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1153.0
+offset_bottom = 649.0
+script = ExtResource("1_dsqof")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1149.0
+offset_bottom = 649.0
+texture = ExtResource("2_h53e0")
+expand_mode = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1147.0
+offset_bottom = 578.0
+alignment = 2
+
+[node name="Enter" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+text = "Pressione Enter para continuar..."
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 103.0
+offset_right = 1153.0
+offset_bottom = 649.0
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkipButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 946.0
+offset_top = 553.0
+offset_right = 1135.0
+offset_bottom = 630.0
+text = "SKIP"
+
+[node name="MusicaFundo" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_o0lxc")
+volume_db = -13.685
+
+[connection signal="pressed" from="SkipButton" to="." method="_on_skip_button_pressed"]
